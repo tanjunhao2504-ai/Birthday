@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday 🎉</title>
+<style>
+/* --------------------- Body --------------------- */
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  font-family: 'Arial', sans-serif;
+  overflow: hidden;
+  color: white;
+  text-align: center;
+}
+
+/* --------------------- Container --------------------- */
+.container {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* --------------------- Title --------------------- */
+h1 {
+  font-size: 3em;
+  animation: bounce 2s infinite;
+}
+
+h2 {
+  animation: fadeIn 3s;
+  margin-bottom: 25px;
+}
+
+/* --------------------- Button --------------------- */
+button {
+  padding: 12px 30px;
+  font-size: 18px;
+  background: #ff4081;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  cursor: pointer;
+  animation: pulse 1.5s infinite;
+  margin-top: 15px;
+}
+
+button:hover {
+  background: #f50057;
+}
+
+/* --------------------- Section Text --------------------- */
+.section {
+  margin-top: 25px;
+  animation: slideUp 2s;
+}
+
+/* --------------------- Floating Balloons --------------------- */
+.balloon {
+  position: absolute;
+  bottom: -100px;
+  width: 40px;
+  height: 55px;
+  border-radius: 50%;
+  animation: float 8s linear infinite;
+}
+
+/* --------------------- Cake Scene --------------------- */
+.cake-scene {
+  position: relative;
+  width: 220px;
+  height: 300px;
+  margin: 20px auto;
+}
+
+/* Plate */
+.plate {
+  position: absolute;
+  bottom: 0;
+  width: 220px;
+  height: 14px;
+  background: #eee;
+  border-radius: 50%;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+}
+
+/* Cake layers */
+.cake {
+  position: absolute;
+  left: 10px;
+  width: 200px;
+  height: 50px;
+  background: #c49a6c;
+  border-radius: 12px;
+  box-shadow: inset 0 -6px rgba(0,0,0,0.1);
+  opacity: 0;
+}
+
+/* Bottom layer */
+.layer-bottom { bottom: 14px; animation: drop 0.8s ease-out forwards; }
+/* Middle layer */
+.layer-middle { bottom: 64px; animation: drop 0.8s ease-out forwards; animation-delay: 0.6s; }
+/* Top layer */
+.layer-top { bottom: 114px; animation: drop 0.8s ease-out forwards; animation-delay: 1.2s; }
+
+/* Cream */
+.cream {
+  position: absolute;
+  bottom: 164px;
+  left: 10px;
+  width: 200px;
+  height: 30px;
+  background: #fff;
+  border-radius: 15px 15px 10px 10px;
+  opacity: 0;
+  animation: fadeIn 0.6s forwards;
+  animation-delay: 1.9s;
+}
+
+/* Candle */
+.candle {
+  position: absolute;
+  bottom: 190px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 35px;
+  background: repeating-linear-gradient(pink, pink 6px, white 6px, white 12px);
+  border-radius: 5px;
+  opacity: 0;
+  animation: fadeIn 0.6s forwards;
+  animation-delay: 2.4s;
+}
+
+/* Flame */
+.flame {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle, yellow, orange, red);
+  border-radius: 50%;
+  animation: flicker 0.25s infinite;
+}
+
+/* --------------------- Animations --------------------- */
+@keyframes bounce { 0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);} }
+@keyframes fadeIn { to{opacity:1;} }
+@keyframes pulse { 0%{transform:scale(1);}50%{transform:scale(1.1);}100%{transform:scale(1);} }
+@keyframes slideUp { from{transform:translateY(50px); opacity:0;} to{transform:translateY(0); opacity:1;} }
+@keyframes float { from{transform:translateY(0);} to{transform:translateY(-120vh);} }
+@keyframes drop { 0%{transform:translateY(-120px);opacity:0;} 70%{transform:translateY(10px);} 100%{transform:translateY(0);opacity:1;} }
+@keyframes flicker { 0%{transform:translateX(-50%) scale(1);}50%{transform:translateX(-50%) scale(1.2);}100%{transform:translateX(-50%) scale(1);} }
+@keyframes confettiFall { from{top:-10px;} to{top:110vh;} }
+
+/* Confetti style */
+.confetti { position:absolute; width:8px; height:8px; animation:confettiFall linear infinite; }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>🎉 Happy Birthday 🎉</h1>
+  <h2 id="name"></h2>
+
+  <!-- Cake scene -->
+  <div class="cake-scene">
+    <div class="plate"></div>
+    <div class="cake layer-bottom"></div>
+    <div class="cake layer-middle"></div>
+    <div class="cake layer-top"></div>
+    <div class="cream"></div>
+    <div class="candle"><div class="flame"></div></div>
+  </div>
+
+  <div class="section">
+    <p>🎂 I wish you Happy Birthday, already 18 years old, I wish you always happy and always 18.</p>
+    <p>🎁 And the most important, wish all of your dreams come throught.</p>
+  </div>
+
+  <button onclick="celebrate()">Celebrate 🎆</button>
+  <div id="message" class="section"></div>
+</div>
+
+<!-- Balloons -->
+<div class="balloon" style="left:10%; background:#ff5252;"></div>
+<div class="balloon" style="left:30%; background:#ffeb3b;"></div>
+<div class="balloon" style="left:50%; background:#4caf50;"></div>
+<div class="balloon" style="left:70%; background:#2196f3;"></div>
+<div class="balloon" style="left:90%; background:#e040fb;"></div>
+
+<script>
+let person = prompt("Enter birthday person's name:");
+document.getElementById("name").innerHTML = "Dear " + person + " 💖";
+
+function celebrate() {
+  document.getElementById("message").innerHTML =
+    "🎆 Today is all about YOU! Enjoy every moment 🎉";
+
+  // Confetti
+  for(let i=0;i<40;i++){
+    let c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random()*100 + "vw";
+    c.style.background = "hsl("+Math.random()*360+",100%,50%)";
+    c.style.animationDuration = (Math.random()*2+2)+"s";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),3000);
+  }
+}
+</script>
+
+</body>
+</html>
